@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\holenexus.ico</ApplicationIcon>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Fody" Version="6.6.0" PrivateAssets="All" />
+		<PackageReference Include="Costura.Fody" Version="5.7.0" PrivateAssets="All" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\213_generated.jpg" />
+    <None Remove="Assets\5761437_discord_logo_icon.png" />
+    <None Remove="Assets\accept.png" />
+    <None Remove="Assets\bin.png" />
+    <None Remove="Assets\CloseWindowIcon.png" />
+    <None Remove="Assets\download %281%29.png" />
+    <None Remove="Assets\holenexus.png" />
+    <None Remove="Assets\icons8-folder-250.png" />
+    <None Remove="Assets\list.png" />
+    <None Remove="Assets\Rolling-1s-800px.gif" />
+    <None Remove="Assets\Rolling-2.4s-197px.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\holenexus.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Costura.Fody" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\213_generated.jpg" />
+    <Resource Include="Assets\5761437_discord_logo_icon.png" />
+    <Resource Include="Assets\accept.png" />
+    <Resource Include="Assets\bin.png" />
+    <Resource Include="Assets\CloseWindowIcon.png" />
+    <Resource Include="Assets\download (1).png" />
+    <Resource Include="Assets\holenexus.png" />
+    <Resource Include="Assets\icons8-folder-250.png" />
+    <Resource Include="Assets\list.png" />
+    <Resource Include="Assets\Rolling-1s-800px.gif" />
+    <Resource Include="Assets\Rolling-2.4s-197px.gif" />
+  </ItemGroup>
+
+</Project>

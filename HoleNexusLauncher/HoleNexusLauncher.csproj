@@ -1,0 +1,115 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>holenexus.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Fody" Version="6.6.0" PrivateAssets="All" />
+	<PackageReference Include="Costura.Fody" Version="5.7.0" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <None Remove="Assets\cleared.png" />
+    <None Remove="Assets\errored.png" />
+    <None Remove="Assets\executed.png" />
+    <None Remove="Assets\holenexus.png" />
+    <None Remove="Assets\informed.png" />
+    <None Remove="Assets\inject.png" />
+    <None Remove="Assets\opened.png" />
+    <None Remove="Assets\robloxed.png" />
+    <None Remove="Assets\saved.png" />
+    <None Remove="Assets\succeded.png" />
+    <None Remove="Assets\user.png" />
+    <None Remove="Assets\warned.png" />
+    <None Remove="Fonts\MPLUSRounded1c-Black.ttf" />
+    <None Remove="Fonts\MPLUSRounded1c-Bold.ttf" />
+    <None Remove="Fonts\MPLUSRounded1c-ExtraBold.ttf" />
+    <None Remove="Fonts\MPLUSRounded1c-Light.ttf" />
+    <None Remove="Fonts\MPLUSRounded1c-Medium.ttf" />
+    <None Remove="Fonts\MPLUSRounded1c-Regular.ttf" />
+    <None Remove="Fonts\MPLUSRounded1c-Thin.ttf" />
+    <None Remove="Fonts\WorkSans-Black.ttf" />
+    <None Remove="Fonts\WorkSans-BlackItalic.ttf" />
+    <None Remove="Fonts\WorkSans-Bold.ttf" />
+    <None Remove="Fonts\WorkSans-BoldItalic.ttf" />
+    <None Remove="Fonts\WorkSans-ExtraBold.ttf" />
+    <None Remove="Fonts\WorkSans-ExtraBoldItalic.ttf" />
+    <None Remove="Fonts\WorkSans-ExtraLight.ttf" />
+    <None Remove="Fonts\WorkSans-ExtraLightItalic.ttf" />
+    <None Remove="Fonts\WorkSans-Italic-VariableFont_wght.ttf" />
+    <None Remove="Fonts\WorkSans-Italic.ttf" />
+    <None Remove="Fonts\WorkSans-Light.ttf" />
+    <None Remove="Fonts\WorkSans-LightItalic.ttf" />
+    <None Remove="Fonts\WorkSans-Medium.ttf" />
+    <None Remove="Fonts\WorkSans-MediumItalic.ttf" />
+    <None Remove="Fonts\WorkSans-Regular.ttf" />
+    <None Remove="Fonts\WorkSans-SemiBold.ttf" />
+    <None Remove="Fonts\WorkSans-SemiBoldItalic.ttf" />
+    <None Remove="Fonts\WorkSans-Thin.ttf" />
+    <None Remove="Fonts\WorkSans-ThinItalic.ttf" />
+    <None Remove="Fonts\WorkSans-VariableFont_wght.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="holenexus.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="App.xaml" />
+    <Resource Include="Assets\cleared.png" />
+    <Resource Include="Assets\errored.png" />
+    <Resource Include="Assets\executed.png" />
+    <Resource Include="Assets\holenexus.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\informed.png" />
+    <Resource Include="Assets\inject.png" />
+    <Resource Include="Assets\opened.png" />
+    <Resource Include="Assets\robloxed.png" />
+    <Resource Include="Assets\saved.png" />
+    <Resource Include="Assets\succeded.png" />
+    <Resource Include="Assets\user.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\warned.png" />
+    <Resource Include="Fonts\MPLUSRounded1c-Black.ttf" />
+    <Resource Include="Fonts\MPLUSRounded1c-Bold.ttf" />
+    <Resource Include="Fonts\MPLUSRounded1c-ExtraBold.ttf" />
+    <Resource Include="Fonts\MPLUSRounded1c-Light.ttf" />
+    <Resource Include="Fonts\MPLUSRounded1c-Medium.ttf" />
+    <Resource Include="Fonts\MPLUSRounded1c-Regular.ttf" />
+    <Resource Include="Fonts\MPLUSRounded1c-Thin.ttf" />
+    <Resource Include="Fonts\WorkSans-Black.ttf" />
+    <Resource Include="Fonts\WorkSans-BlackItalic.ttf" />
+    <Resource Include="Fonts\WorkSans-Bold.ttf" />
+    <Resource Include="Fonts\WorkSans-BoldItalic.ttf" />
+    <Resource Include="Fonts\WorkSans-ExtraBold.ttf" />
+    <Resource Include="Fonts\WorkSans-ExtraBoldItalic.ttf" />
+    <Resource Include="Fonts\WorkSans-ExtraLight.ttf" />
+    <Resource Include="Fonts\WorkSans-ExtraLightItalic.ttf" />
+    <Resource Include="Fonts\WorkSans-Italic-VariableFont_wght.ttf" />
+    <Resource Include="Fonts\WorkSans-Italic.ttf" />
+    <Resource Include="Fonts\WorkSans-Light.ttf" />
+    <Resource Include="Fonts\WorkSans-LightItalic.ttf" />
+    <Resource Include="Fonts\WorkSans-Medium.ttf" />
+    <Resource Include="Fonts\WorkSans-MediumItalic.ttf" />
+    <Resource Include="Fonts\WorkSans-Regular.ttf" />
+    <Resource Include="Fonts\WorkSans-SemiBold.ttf" />
+    <Resource Include="Fonts\WorkSans-SemiBoldItalic.ttf" />
+    <Resource Include="Fonts\WorkSans-Thin.ttf" />
+    <Resource Include="Fonts\WorkSans-ThinItalic.ttf" />
+    <Resource Include="Fonts\WorkSans-VariableFont_wght.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+</Project>
