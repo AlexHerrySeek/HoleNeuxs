@@ -9,7 +9,7 @@
     <a title="Telegram" href="https://t.me/alexherry_seek"><img alt="Telegram" src="https://github.com/user-attachments/assets/61516d56-23c2-44a2-83a1-7857c4fe4e17" width=200 height=53></a>
   </p>
 
-**HoleNexus is a Roblox exploit that bypasses key systems implemented in Roblox exploit APIs. MainDab works as of September 2025.** 
+**HoleNexus is a Roblox exploit that bypasses key systems implemented in Roblox exploit APIs. HoleNexus works as of September 2025.** 
 
 HoleNexus was previously discontinued on April 2024, before a partial resurrection on June 2025. 
 
