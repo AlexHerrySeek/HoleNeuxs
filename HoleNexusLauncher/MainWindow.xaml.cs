@@ -43,60 +43,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        KiemTraTaiNguyen();
     }
-
-    #region Kiểm Tra Tài Nguyên Monaco
-    private async void KiemTraTaiNguyen()
-    {
-        string assetsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "Monaco");
-        string zipUrl = "https://github.com/AlexHerrySeek/HoleNexus/raw/refs/heads/main/backend/Monaco.zip";
-        string tempZip = Path.Combine(Path.GetTempPath(), "MonacoQuynhAnh.zip");
-
-        try
-        {
-            if (!Directory.Exists(assetsPath))
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(assetsPath));
-                Console.WriteLine("Downloading Monaco assets...");
-
-                using (HttpClient client = new HttpClient())
-                {
-                    var data = await client.GetByteArrayAsync(zipUrl);
-                    await File.WriteAllBytesAsync(tempZip, data);
-                }
-
-                Console.WriteLine("Extracting assets...");
-                string extractPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets");
-                ZipFile.ExtractToDirectory(tempZip, extractPath, true);
-
-                File.Delete(tempZip);
-                Console.WriteLine("Monaco setup complete. Restarting application...");
-
-                // Khởi động lại phần mềm
-                string exePath = Process.GetCurrentProcess().MainModule.FileName;
-                Process.Start(new ProcessStartInfo
-                {
-                    FileName = exePath,
-                    UseShellExecute = true
-                });
-
-                Environment.Exit(0); // Thoát tiến trình hiện tại
-                return;
-            }
-            else
-            {
-                
-            }
-
-            await UpdateManager.CheckForUpdateAsync();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error checking resources: {ex.Message}");
-        }
-    }
-    #endregion
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
@@ -450,6 +397,7 @@ public partial class MainWindow : Window
         }
     }
     #endregion
+
     #region Thông Báo Toastr
     private void Success(string text, int time)
     {
@@ -595,11 +543,11 @@ public partial class MainWindow : Window
 
     #endregion
 
-    #region Monaco
+    #region Monaco Editor
     public void initbrowser()
     {
         browser = new WebView2();
-        string localPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "Monaco", "editor.html");
+        string localPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "Monaco", "index.html");
         browser.Source = new Uri(localPath);
         browser.NavigationCompleted += (sender, e) =>
         {
@@ -616,7 +564,7 @@ public partial class MainWindow : Window
         if (browser?.CoreWebView2 == null)
             return "";
 
-        string response = await browser.ExecuteScriptAsync("getEditorContent()");
+        string response = await browser.ExecuteScriptAsync("GetText()");
         return System.Text.Json.JsonSerializer.Deserialize<string>(response);
     }
 
@@ -626,7 +574,7 @@ public partial class MainWindow : Window
             return;
 
         text = text.Replace("`", "\\`");
-        await browser.ExecuteScriptAsync($"setEditorContent(`{text}`);");
+        await browser.ExecuteScriptAsync($"SetText(`{text}`);");
     }
 
     public async Task ClearText()
@@ -634,7 +582,7 @@ public partial class MainWindow : Window
         if (browser?.CoreWebView2 == null)
             return;
 
-        await browser.ExecuteScriptAsync("clearEditor();");
+        await browser.ExecuteScriptAsync("SetText(``);");
     }
 
     public async Task OpenFile()
@@ -803,6 +751,7 @@ public partial class MainWindow : Window
         }
     }
     #endregion
+
     #region ScriptBlox Mục Scripts
     private async Task LoadPopularScriptsAsync(bool append = false)
     {

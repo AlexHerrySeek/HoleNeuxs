@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\holenexuslauncher\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|solutionrelative:holenexuslauncher\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\holenexuslauncher\\loading.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|solutionrelative:holenexuslauncher\\loading.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\holenexuslauncher\\loading.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|solutionrelative:holenexuslauncher\\loading.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "HoleNexusLauncher\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\MainWindow.xaml.cs",
+              "RelativeToolTip": "HoleNexusLauncher\\MainWindow.xaml.cs",
+              "ViewState": "AgIAADICAAAAAAAAAAAmwEcCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T03:36:32.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Loading.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Loading.xaml.cs",
+              "RelativeDocumentMoniker": "HoleNexusLauncher\\Loading.xaml.cs",
+              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Loading.xaml.cs",
+              "RelativeToolTip": "HoleNexusLauncher\\Loading.xaml.cs",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAkwPkAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T03:24:54.365Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Loading.xaml",
+              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Loading.xaml",
+              "RelativeDocumentMoniker": "HoleNexusLauncher\\Loading.xaml",
+              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Loading.xaml",
+              "RelativeToolTip": "HoleNexusLauncher\\Loading.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-03T03:19:53.565Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

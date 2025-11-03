@@ -18,7 +18,7 @@
             <Button x:Name="Cancel" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" Margin="1" MouseEnter="Cancel_MouseEnter" MouseLeave="Cancel_MouseLeave" Click="Cancel_Click" BorderBrush="{x:Null}">
                 <Grid>
                     <Image Source="/Assets/closed.png" Width="15" Height="15"/>
-                    <Image x:Name="closedImg" Source="/Assets/closed.png" Width="15" Height="15" Opacity="0"/>
+                    <Image x:Name="closedImg" Source="/Assets/Close_Icon.png" Width="15" Height="15" Opacity="0"/>
                 </Grid>
             </Button>
             <Border x:Name="Progressbar" Height="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" CornerRadius="5" Background="Black" Panel.ZIndex="1"/>
