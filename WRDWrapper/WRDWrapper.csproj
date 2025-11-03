@@ -6,7 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>HoleNexusWRDWrapper</AssemblyName>
+    <ApplicationIcon>holenexus.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="holenexus.ico" />
+  </ItemGroup>
 
   <ItemGroup>
 	  <PackageReference Include="Costura.Fody" Version="6.0.0">

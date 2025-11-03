@@ -8,12 +8,8 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>holenexus.ico</ApplicationIcon>
     <UseWindowsForms>False</UseWindowsForms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
-
-  <ItemGroup>
-	<PackageReference Include="Fody" Version="6.6.0" PrivateAssets="All" />
-	<PackageReference Include="Costura.Fody" Version="5.7.0" />
-  </ItemGroup>
 	
   <ItemGroup>
     <None Remove="Assets\cleared.png" />
@@ -112,5 +108,10 @@
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Fody" Version="6.6.0" PrivateAssets="All" />
+		<PackageReference Include="Costura.Fody" Version="5.7.0" />
+	</ItemGroup>
 
 </Project>

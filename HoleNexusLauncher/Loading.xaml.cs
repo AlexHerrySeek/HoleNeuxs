@@ -18,6 +18,7 @@ namespace HoleNexusLauncher
     public partial class Loading : Window
     {
         WebClient WebStuff = new WebClient();
+
         [DllImport("kernel32.dll")]
         static extern IntPtr GetConsoleWindow();
 
@@ -31,6 +32,8 @@ namespace HoleNexusLauncher
         {
             InitializeComponent();
             ShowConsole();
+            Console.Title = "HoleNexus | Loading...";
+            Console.WriteLine(" ██░ ██  ▒█████   ██▓    ▓█████  ███▄    █ ▓█████ ▒██   ██▒ █    ██   ██████ \r\n▓██░ ██▒▒██▒  ██▒▓██▒    ▓█   ▀  ██ ▀█   █ ▓█   ▀ ▒▒ █ █ ▒░ ██  ▓██▒▒██    ▒ \r\n▒██▀▀██░▒██░  ██▒▒██░    ▒███   ▓██  ▀█ ██▒▒███   ░░  █   ░▓██  ▒██░░ ▓██▄   \r\n░▓█ ░██ ▒██   ██░▒██░    ▒▓█  ▄ ▓██▒  ▐▌██▒▒▓█  ▄  ░ █ █ ▒ ▓▓█  ░██░  ▒   ██▒\r\n░▓█▒░██▓░ ████▓▒░░██████▒░▒████▒▒██░   ▓██░░▒████▒▒██▒ ▒██▒▒▒█████▓ ▒██████▒▒\r\n ▒ ░░▒░▒░ ▒░▒░▒░ ░ ▒░▓  ░░░ ▒░ ░░ ▒░   ▒ ▒ ░░ ▒░ ░▒▒ ░ ░▓ ░░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░\r\n ▒ ░▒░ ░  ░ ▒ ▒░ ░ ░ ▒  ░ ░ ░  ░░ ░░   ░ ▒░ ░ ░  ░░░   ░▒ ░░░▒░ ░ ░ ░ ░▒  ░ ░\r\n ░  ░░ ░░ ░ ░ ▒    ░ ░      ░      ░   ░ ░    ░    ░    ░   ░░░ ░ ░ ░  ░  ░  \r\n ░  ░  ░    ░ ░      ░  ░   ░  ░         ░    ░  ░ ░    ░     ░           ░  \r\n Welcome, To HoleNexus! Wait Download Assets To Using...");
         }
 
         public static void ShowConsole()
@@ -384,8 +387,7 @@ namespace HoleNexusLauncher
                 }
             }
 
-            Console.Title = "HoleNexus | Config Downloading,....";
-            Console.WriteLine("All done!");
+            Console.WriteLine("All done Install!");
         }
         #endregion
 
@@ -416,7 +418,6 @@ namespace HoleNexusLauncher
 
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-            HideConsole();
             this.Close();
         }
     }

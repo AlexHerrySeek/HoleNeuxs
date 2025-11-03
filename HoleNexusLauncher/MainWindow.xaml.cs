@@ -1,4 +1,6 @@
-﻿using HoleNexusLauncher.Controls;
+﻿using HoleNexus.Classes;
+using HoleNexusLauncher.Controls;
+using HoleNexusLauncher.Execution;
 using Microsoft.Web.WebView2.Wpf;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -6,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 using System.Windows;
@@ -18,7 +21,6 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using HoleNexusLauncher.Execution;
 using Path = System.IO.Path;
 
 namespace HoleNexusLauncher;
@@ -35,6 +37,10 @@ public partial class MainWindow : Window
     private int currentPage = 1;
     private bool isLoading = false;
     private const int maxPages = 10;
+    private bool isNotifying;
+    private readonly Dictionary<string, int> notifications = new Dictionary<string, int>();
+    private Storyboard currentNotification;
+    private const string CurrentVersion = "0.0.4"; // <-- Thay đổi phiên bản hiện tại ở đây
     public class DataModel
     {
         public List<string> changelogs { get; set; }
@@ -44,9 +50,35 @@ public partial class MainWindow : Window
     bool IsInjected = false;
     bool InjectionInProgress = false;
 
+    [DllImport("kernel32.dll")]
+    static extern IntPtr GetConsoleWindow();
+
+    [DllImport("user32.dll")]
+    static extern bool ShowWindow(IntPtr hWnd, int nCmdShow); // show = 5, hide = 0
+
+    [DllImport("kernel32.dll")]
+    static extern bool AllocConsole(); // Tạo mới console nếu chưa có
     public MainWindow()
     {
         InitializeComponent();
+        ShowConsole();
+        Console.Title = "HoleNexus Launcher Console";
+        Console.Clear();
+        Console.WriteLine($" ██░ ██  ▒█████   ██▓    ▓█████  ███▄    █ ▓█████ ▒██   ██▒ █    ██   ██████ \r\n▓██░ ██▒▒██▒  ██▒▓██▒    ▓█   ▀  ██ ▀█   █ ▓█   ▀ ▒▒ █ █ ▒░ ██  ▓██▒▒██    ▒ \r\n▒██▀▀██░▒██░  ██▒▒██░    ▒███   ▓██  ▀█ ██▒▒███   ░░  █   ░▓██  ▒██░░ ▓██▄   \r\n░▓█ ░██ ▒██   ██░▒██░    ▒▓█  ▄ ▓██▒  ▐▌██▒▒▓█  ▄  ░ █ █ ▒ ▓▓█  ░██░  ▒   ██▒\r\n░▓█▒░██▓░ ████▓▒░░██████▒░▒████▒▒██░   ▓██░░▒████▒▒██▒ ▒██▒▒▒█████▓ ▒██████▒▒\r\n ▒ ░░▒░▒░ ▒░▒░▒░ ░ ▒░▓  ░░░ ▒░ ░░ ▒░   ▒ ▒ ░░ ▒░ ░▒▒ ░ ░▓ ░░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░\r\n ▒ ░▒░ ░  ░ ▒ ▒░ ░ ░ ▒  ░ ░ ░  ░░ ░░   ░ ▒░ ░ ░  ░░░   ░▒ ░░░▒░ ░ ░ ░ ░▒  ░ ░\r\n ░  ░░ ░░ ░ ░ ▒    ░ ░      ░      ░   ░ ░    ░    ░    ░   ░░░ ░ ░ ░  ░  ░  \r\n ░  ░  ░    ░ ░      ░  ░   ░  ░         ░    ░  ░ ░    ░     ░           ░  \r\n Welcome, To HoleNexus! Version {CurrentVersion}.\r\n Pls Join My Discord Sever: discord.gg/gRgkNYeWYs\r\n My Website: holenexus.page.gd\r\n Made With Love AlexHerry.Seek");
+    }
+
+    public static void ShowConsole()
+    {
+        IntPtr handle = GetConsoleWindow();
+
+        if (handle == IntPtr.Zero)
+        {
+            AllocConsole(); // Nếu app chưa có console -> tạo mới
+        }
+        else
+        {
+            ShowWindow(handle, 5); // 5 = SW_SHOW
+        }
     }
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -54,6 +86,8 @@ public partial class MainWindow : Window
         UserNameLabel.Content = Environment.UserName;
         Information("Welcome back, " + Environment.UserName + "!", 4);
         LoginLabel.Content = "Last Login: " + DateTime.Now;
+        Console.WriteLine($"Welcome Back, " + Environment.UserName + ", Last Login: " + DateTime.Now);
+        PopupNotification("HoleNexus Launcher Loaded Successfully!", 3000);
         LoadGitHubData();
         GetScripts();
         _ = LoadPopularScriptsAsync();
@@ -66,9 +100,8 @@ public partial class MainWindow : Window
     public static class UpdateManager
     {
         private const string VersionUrl = "https://raw.githubusercontent.com/AlexHerrySeek/HoleNeuxs/refs/heads/main/backend/vesion";
-        private const string UpdateUrl = "https://raw.githubusercontent.com/YourUser/YourRepo/main/Setup.exe"; 
-        private const string CurrentVersion = "0.0.4"; // <-- Thay đổi phiên bản hiện tại ở đây
-
+        private const string UpdateUrl = "https://github.com/AlexHerrySeek/HoleNexus/releases/download/AlexHerry/HoleNexusBootstrapper.exe"; 
+        
         public static async Task CheckForUpdateAsync()
         {
             try
@@ -77,14 +110,11 @@ public partial class MainWindow : Window
                 {
                     string latestVersion = await client.GetStringAsync(VersionUrl);
                     latestVersion = latestVersion.Trim();
+                    Console.WriteLine($"Latest Version Online: {latestVersion}");
 
                     if (IsNewerVersion(latestVersion, CurrentVersion))
                     {
-                        var result = MessageBox.Show(
-                            $"A new update is available ({latestVersion})!\nWould you like to download and install it now?","Update Available",
-                            MessageBoxButton.YesNo,
-                            MessageBoxImage.Information);
-
+                        var result = MessageBox.Show($"A new update is available ({latestVersion})!\nWould you like to download and install it now?","Update Available",MessageBoxButton.YesNo,MessageBoxImage.Information);
                         if (result == MessageBoxResult.Yes)
                         {
                             await DownloadAndInstallUpdateAsync();
@@ -159,6 +189,7 @@ public partial class MainWindow : Window
             {
                 string json = await client.GetStringAsync(url);
                 DataModel data = JsonConvert.DeserializeObject<DataModel>(json);
+                Console.WriteLine("Loading Changelogs and News from Sever.");
                 ChangelogsPanel1.Children.Clear();
                 NewPanel1.Children.Clear();
                 if (data.changelogs != null)
@@ -190,7 +221,19 @@ public partial class MainWindow : Window
     #region Window Buttons
     private void CloseClick(object sender, MouseButtonEventArgs e)
     {
-        this.Close();
+        try
+        {
+            foreach (var process in Process.GetProcessesByName("HoleNexusWRDWrapper"))
+            {
+                process.Kill();
+            }
+            this.Close();
+            Application.Current.Shutdown();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"{ex.Message}");
+        }
     }
     private void MaxClick(object sender, MouseButtonEventArgs e)
     {
@@ -404,6 +447,81 @@ public partial class MainWindow : Window
     #endregion
 
     #region Thông Báo Toastr
+    private void DoNotification()
+    {
+        isNotifying = true;
+        KeyValuePair<string, int> keyValuePair = notifications.First();
+        notifications.Remove(keyValuePair.Key);
+        NotificationContent.Text = keyValuePair.Key;
+        DurationIndicator.Width = 0.0;
+        currentNotification = Animation.Animate(new AnimationPropertyBase(NotificationBorder)
+        {
+            Property = FrameworkElement.WidthProperty,
+            To = 280
+        }, new AnimationPropertyBase(DurationIndicator)
+        {
+            Property = FrameworkElement.WidthProperty,
+            To = 278,
+            Duration = new System.Windows.Duration(TimeSpan.FromMilliseconds(keyValuePair.Value)),
+            DisableEasing = true
+        });
+        currentNotification.Completed += delegate
+        {
+            CloseNotification();
+        };
+    }
+
+    private void CloseNotification()
+    {
+        Animation.Animate(new AnimationPropertyBase(NotificationBorder)
+        {
+            Property = FrameworkElement.WidthProperty,
+            To = 0
+        }, new AnimationPropertyBase(DurationIndicator)
+        {
+            Property = FrameworkElement.WidthProperty,
+            To = 0
+        }).Completed += async delegate
+        {
+            if (notifications.Count > 0)
+            {
+                await Task.Delay(250);
+                DoNotification();
+            }
+            else
+            {
+                isNotifying = false;
+            }
+        };
+    }
+
+    private void PopupNotification(string message, int duration = 2500)
+    {
+        notifications[message] = duration; // vừa thêm mới vừa cập nhật nếu đã tồn tại
+
+        if (!isNotifying)
+        {
+            System.Windows.Application.Current.Dispatcher.Invoke(delegate
+            {
+                DoNotification();
+            });
+        }
+    }
+
+
+    private void CloseNotificationButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (currentNotification != null && currentNotification.GetCurrentState() == ClockState.Active)
+        {
+            currentNotification.Stop();
+            CloseNotification();
+        }
+        else
+        {
+            // fallback: chỉ cần đóng notification mà không quan tâm animation
+            CloseNotification();
+        }
+    }
     private void Success(string text, int time)
     {
         var notification = new HoleNexusLauncher.Controls.ThongBao
@@ -556,7 +674,7 @@ public partial class MainWindow : Window
         browser.Source = new Uri(localPath);
         browser.NavigationCompleted += (sender, e) =>
         {
-
+            Console.WriteLine("Monaco Editor Loaded Successfully.");
         };
         if (TabPanel.Children.Count == 0)
         {
@@ -679,7 +797,8 @@ public partial class MainWindow : Window
 
     private void AddTabBTN_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-        AddTab($"Tab {TabPanel.Children.Count.ToString()}.lua", "print('Hello Roblox, I Hacker! Using HoleNexus Expoit.')\n--// Made By Alex Herry.");
+        AddTab($"Tab {TabPanel.Children.Count.ToString()}.lua", "print('Hello Roblox, I Hacker! Using HoleNexus Exploit.')\n--// Made By Alex Herry.");
+        Console.WriteLine("New Tab Added.");
     }
     #endregion
 
@@ -857,26 +976,26 @@ public partial class MainWindow : Window
     {
         if (browser?.CoreWebView2 == null)
         {
-            Error("Editor chưa sẵn sàng!",4);
+            PopupNotification("Editor not available yet!", 4);
             return;
         }
 
         string text = await GetText();
         if (string.IsNullOrWhiteSpace(text))
         {
-            Warning("Không có gì để xóa!", 4);
+            PopupNotification("There is nothing to delete!", 4);
             return;
         }
 
         await ClearText();
-        Success("Đã xóa toàn bộ nội dung!", 4);
+        PopupNotification("All content deleted!", 4);
     }
 
     private async void OpenFile_Click(object sender, RoutedEventArgs e)
     {
         if (browser?.CoreWebView2 == null)
         {
-            Error("Editor chưa sẵn sàng!", 4);
+            PopupNotification("Editor is not ready yet!", 4);
             return;
         }
 
@@ -887,7 +1006,7 @@ public partial class MainWindow : Window
     {
         if (browser?.CoreWebView2 == null)
         {
-            Error("Editor chưa sẵn sàng!",4);
+            PopupNotification("Editor not ready!", 4);
             return;
         }
 
@@ -903,7 +1022,7 @@ public partial class MainWindow : Window
         }
         else if (InjectionInProgress)
         {
-            MessageBox.Show("Injection is already in process");
+            PopupNotification("Injection is already in process");
         }
         else if (pname.Length > 0) // If Roblox is running
         {

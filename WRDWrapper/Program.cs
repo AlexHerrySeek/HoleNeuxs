@@ -16,7 +16,7 @@ namespace WRDWrapper
             key.SetValue("WrapperVersion", WrapperVersion);
             key.Close();
 
-            var server = new PipeProcess("WRDFakeServer");
+            var server = new PipeProcess("HoleNexusWRDWrapper ");
             Console.WriteLine("Starting pipe server, please don't close this window (literally don't)...");
             await server.StartAsync();
         }
