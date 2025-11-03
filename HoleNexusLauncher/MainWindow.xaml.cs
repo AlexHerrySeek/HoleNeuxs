@@ -18,6 +18,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HoleNexusLauncher.Execution;
 using Path = System.IO.Path;
 
 namespace HoleNexusLauncher;
@@ -39,6 +40,9 @@ public partial class MainWindow : Window
         public List<string> changelogs { get; set; }
         public List<string> news { get; set; }
     }
+
+    bool IsInjected = false;
+    bool InjectionInProgress = false;
 
     public MainWindow()
     {
@@ -144,6 +148,7 @@ public partial class MainWindow : Window
         }
     }
     #endregion
+
     #region Lấy Thông Tin Từ Github
     private async void LoadGitHubData()
     {
@@ -843,9 +848,10 @@ public partial class MainWindow : Window
         
     }
     #region Chức Năng Control UI
-    private void Execute_Click(object sender, RoutedEventArgs e)
+    private async void Execute_Click(object sender, RoutedEventArgs e)
     {
-        
+        string code = await GetText(); 
+        Execution.ExecutionHandler.Execute(code); 
     }
     private async void Clear_Click(object sender, RoutedEventArgs e)
     {
@@ -890,12 +896,58 @@ public partial class MainWindow : Window
 
     private void Attach_Click(object sender, RoutedEventArgs e)
     {
-        
+        Process[] pname = Process.GetProcessesByName("RobloxPlayerBeta");
+        if (IsInjected)
+        {
+            MessageBox.Show("The API has already been injected. Attempting to inject twice will result in a crash");
+        }
+        else if (InjectionInProgress)
+        {
+            MessageBox.Show("Injection is already in process");
+        }
+        else if (pname.Length > 0) // If Roblox is running
+        {
+            InjectionInProgress = true;
+
+            // wrd
+            if (Execution.SelectedAPI.API == "Selected API: WeAreDevs API")
+            {
+                // wrd
+                if (Execution.SelectedAPI.API == "Selected API: WeAreDevs API")
+                {
+                    ExecutionHandler.Inject();
+                }
+            }
+        }
+        else
+        {
+            MessageBox.Show("Please open Roblox first before attempting to inject");
+        }
     }
 
     private void KillRoblox_Click(object sender, RoutedEventArgs e)
     {
-        
+        if (MessageBox.Show("Are you sure you want to kill Roblox?", "HoleNexus", MessageBoxButton.YesNo) == MessageBoxResult.No)
+        {
+            // Just a basic YesNo thing
+        }
+        else
+        {
+            try
+            {
+                foreach (Process proc in Process.GetProcessesByName("RobloxPlayerBeta")) // We will loop though each process just to find it
+                {
+                    proc.Kill();
+                    MessageBox.Show("Roblox process killed", "HoleNexus");
+                }
+
+            }
+            catch
+            {
+                // Just in case the user is stupid or something
+                MessageBox.Show("Roblox process has already been killed, or Roblox isn't running.", "HoleNexus");
+            }
+        }
     }
     #endregion
 }

@@ -3,21 +3,59 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using System.Diagnostics;
 using static HoleNexusLauncher.MainWindow;
 
 namespace HoleNexusLauncher
 {
     public partial class Loading : Window
     {
+        WebClient WebStuff = new WebClient();
+        [DllImport("kernel32.dll")]
+        static extern IntPtr GetConsoleWindow();
+
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow); // show = 5, hide = 0
+
+        [DllImport("kernel32.dll")]
+        static extern bool AllocConsole(); // Tạo mới console nếu chưa có
+
         public Loading()
         {
             InitializeComponent();
+            ShowConsole();
         }
+
+        public static void ShowConsole()
+        {
+            IntPtr handle = GetConsoleWindow();
+
+            if (handle == IntPtr.Zero)
+            {
+                AllocConsole(); // Nếu app chưa có console -> tạo mới
+            }
+            else
+            {
+                ShowWindow(handle, 5); // 5 = SW_SHOW
+            }
+        }
+
+        public static void HideConsole()
+        {
+            IntPtr handle = GetConsoleWindow();
+            if (handle != IntPtr.Zero)
+            {
+                ShowWindow(handle, 0); // 0 = SW_HIDE
+            }
+        }
+
 
         #region Hiệu Ứng
         Storyboard storyboard = new Storyboard();
@@ -196,7 +234,7 @@ namespace HoleNexusLauncher
         #endregion
 
         #region Kiểm Tra Tài Nguyên Monaco
-        private async Task KiemTraTaiNguyenAsync()
+        private async Task KiemTraTaiNguyenMonacoAsync()
         {
             string assetsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "Monaco");
             string zipUrl = "https://github.com/AlexHerrySeek/HoleNexus/raw/refs/heads/main/backend/Monaco.zip";
@@ -245,10 +283,118 @@ namespace HoleNexusLauncher
         }
         #endregion
 
+        #region Kiểm Tra Tài Nguyên API
+        private async Task KiemTraTaiNguyenAPIAsync()
+        {
+            try
+            {
+                RegistryKey SettingReg = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\\HoleNexusWRDWrapper");
+                string WRDVer = SettingReg?.GetValue("WrapperVersion")?.ToString();
+
+                if (WRDVer != null)
+                {
+                    string VersionWRDWrapper = WebStuff.DownloadString("https://raw.githubusercontent.com/AlexHerrySeek/HoleNexus/refs/heads/main/backend/VersionWRDWrapper");
+                    if (WRDVer != VersionWRDWrapper.Split(new[] { '\r', '\n' }).FirstOrDefault())
+                    {
+                        Console.WriteLine("Wrapper not up to date, downloading new version");
+
+                        string[] filesToDelete = new[]
+                        {
+                    "HoleNexusWRDWrapper.deps.json",
+                    "HoleNexusWRDWrapper.dll",
+                    "HoleNexusWRDWrapper.exe",
+                    "HoleNexusWRDWrapper.pdb",
+                    "HoleNexusWRDWrapper.runtimeconfig.json",
+                    "WRDFakeServer.exe"
+                };
+
+                        foreach (string file in filesToDelete)
+                        {
+                            if (File.Exists(file))
+                            {
+                                File.Delete(file);
+                            }
+                        }
+
+                        Console.WriteLine("Deleted old files");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Attempt to check WRD wrapper version resulted in error: {ex}");
+            }
+
+            // Tải file nếu chưa có
+            if (!File.Exists("HoleNexusWRDWrapper.deps.json"))
+            {
+                Console.WriteLine("Downloading HoleNexusWRDWrapper.deps.json...");
+                WebStuff.DownloadFile("https://github.com/AlexHerrySeek/HoleNexus/raw/refs/heads/main/backend/WRDWrapper/HoleNexusWRDWrapper.deps.json", "HoleNexusWRDWrapper.deps.json");
+            }
+            if (!File.Exists("HoleNexusWRDWrapper.dll"))
+            {
+                Console.WriteLine("Downloading HoleNexusWRDWrapper.dll...");
+                WebStuff.DownloadFile("https://github.com/AlexHerrySeek/HoleNexus/raw/refs/heads/main/backend/WRDWrapper/HoleNexusWRDWrapper.dll", "HoleNexusWRDWrapper.dll");
+            }
+            if (!File.Exists("HoleNexusWRDWrapper.exe"))
+            {
+                Console.WriteLine("Downloading HoleNexusWRDWrapper.exe...");
+                WebStuff.DownloadFile("https://github.com/AlexHerrySeek/HoleNexus/raw/refs/heads/main/backend/WRDWrapper/HoleNexusWRDWrapper.exe", "HoleNexusWRDWrapper.exe");
+            }
+            if (!File.Exists("HoleNexusWRDWrapper.pdb"))
+            {
+                Console.WriteLine("Downloading HoleNexusWRDWrapper.pdb...");
+                WebStuff.DownloadFile("https://github.com/AlexHerrySeek/HoleNexus/raw/refs/heads/main/backend/WRDWrapper/HoleNexusWRDWrapper.pdb", "HoleNexusWRDWrapper.pdb");
+            }
+            if (!File.Exists("HoleNexusWRDWrapper.runtimeconfig.json"))
+            {
+                Console.WriteLine("Downloading HoleNexusWRDWrapper.runtimeconfig.json...");
+                WebStuff.DownloadFile("https://github.com/AlexHerrySeek/HoleNexus/raw/refs/heads/main/backend/WRDWrapper/HoleNexusWRDWrapper.runtimeconfig.json", "HoleNexusWRDWrapper.runtimeconfig.json");
+            }
+            if (!File.Exists("WRDFakeServer.exe"))
+            {
+                Console.WriteLine("Downloading WRDFakeServer.exe...");
+                WebStuff.DownloadFile("https://github.com/AlexHerrySeek/HoleNexus/releases/download/AlexHerry/WRDFakeServer.exe", "WRDFakeServer.exe");
+            }
+
+            if (!File.Exists("wearedevs_exploit_api.dll"))
+            {
+                Console.WriteLine("Downloading wearedevs_exploit_api.dll...");
+                WebStuff.DownloadFile("https://wrdcdn.net/r/2/exploit%20api/wearedevs_exploit_api.dll", "wearedevs_exploit_api.dll");
+            }
+
+            // OpenSSL
+            Console.WriteLine("Checking OpenSSL dependencies...");
+            if (!Directory.Exists("OpenSSL"))
+                Directory.CreateDirectory("OpenSSL");
+
+            string[] opensslFiles = {
+        "msys-2.0.dll",
+        "msys-crypto-3.dll",
+        "msys-ssl-3.dll",
+        "openssl.exe"
+    };
+            foreach (var file in opensslFiles)
+            {
+                string path = $"OpenSSL\\{file}";
+                if (!File.Exists(path))
+                {
+                    Console.WriteLine($"Downloading {file}...");
+                    WebStuff.DownloadFile($"https://github.com/AlexHerrySeek/HoleNexus/raw/refs/heads/main/backend/OpenSSL/{file}", path);
+                }
+            }
+
+            Console.Title = "HoleNexus | Config Downloading,....";
+            Console.WriteLine("All done!");
+        }
+        #endregion
+
         private async void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             // Kiểm tra tài nguyên song song với animation
-            var checkTask = KiemTraTaiNguyenAsync();
+            var checkMonaco = KiemTraTaiNguyenMonacoAsync();
+            var checkAPI = KiemTraTaiNguyenAPIAsync();
+            await Task.WhenAll(checkMonaco, checkAPI);
 
             Fade(MainBorder);
             ObjectShiftPos(MainBorder, MainBorder.Margin, new Thickness(0));
@@ -265,11 +411,12 @@ namespace HoleNexusLauncher
             MainBorder.Visibility = Visibility.Collapsed;
             await Task.Delay(500);
 
-            await checkTask;
+            await checkMonaco;
+            await checkAPI;
 
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-
+            HideConsole();
             this.Close();
         }
     }

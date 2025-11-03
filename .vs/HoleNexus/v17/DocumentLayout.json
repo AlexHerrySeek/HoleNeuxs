@@ -3,12 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\holenexuslauncher\\keysystem.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|solutionrelative:holenexuslauncher\\keysystem.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\holenexuslauncher\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|solutionrelative:holenexuslauncher\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\holenexuslauncher\\keysystem.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|solutionrelative:holenexuslauncher\\keysystem.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\holenexuslauncher\\execution\\executionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|solutionrelative:holenexuslauncher\\execution\\executionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45C9AB6D-10C2-4E70-B8B0-229FAEEA67CD}|WRDWrapper\\WRDWrapper.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\wrdwrapper\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45C9AB6D-10C2-4E70-B8B0-229FAEEA67CD}|WRDWrapper\\WRDWrapper.csproj|solutionrelative:wrdwrapper\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45C9AB6D-10C2-4E70-B8B0-229FAEEA67CD}|WRDWrapper\\WRDWrapper.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\wrdwrapper\\wrdapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45C9AB6D-10C2-4E70-B8B0-229FAEEA67CD}|WRDWrapper\\WRDWrapper.csproj|solutionrelative:wrdwrapper\\wrdapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45C9AB6D-10C2-4E70-B8B0-229FAEEA67CD}|WRDWrapper\\WRDWrapper.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\wrdwrapper\\pipeprocess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45C9AB6D-10C2-4E70-B8B0-229FAEEA67CD}|WRDWrapper\\WRDWrapper.csproj|solutionrelative:wrdwrapper\\pipeprocess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\holenexuslauncher\\loading.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|solutionrelative:holenexuslauncher\\loading.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\holenexuslauncher\\execution\\coredata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|solutionrelative:holenexuslauncher\\execution\\coredata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\holenexuslauncher\\execution\\selectedapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|solutionrelative:holenexuslauncher\\execution\\selectedapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\holenexuslauncher\\execution\\pipewrite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|solutionrelative:holenexuslauncher\\execution\\pipewrite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|c:\\users\\nguyennhatsakura\\downloads\\holenexuslauncher\\holenexuslauncher\\execution\\pipesync.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A26D365-EE3B-4936-BC7A-2B92F317CA09}|HoleNexusLauncher\\HoleNexusLauncher.csproj|solutionrelative:holenexuslauncher\\execution\\pipesync.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,31 +50,136 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "KeySystem.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\KeySystem.xaml.cs",
-              "RelativeDocumentMoniker": "HoleNexusLauncher\\KeySystem.xaml.cs",
-              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\KeySystem.xaml.cs",
-              "RelativeToolTip": "HoleNexusLauncher\\KeySystem.xaml.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAzwC8AAAAJAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "PipeSync.cs",
+              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Execution\\PipeSync.cs",
+              "RelativeDocumentMoniker": "HoleNexusLauncher\\Execution\\PipeSync.cs",
+              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Execution\\PipeSync.cs",
+              "RelativeToolTip": "HoleNexusLauncher\\Execution\\PipeSync.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T04:18:08.954Z",
+              "WhenOpened": "2025-11-03T10:14:04.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PipeWrite.cs",
+              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Execution\\PipeWrite.cs",
+              "RelativeDocumentMoniker": "HoleNexusLauncher\\Execution\\PipeWrite.cs",
+              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Execution\\PipeWrite.cs",
+              "RelativeToolTip": "HoleNexusLauncher\\Execution\\PipeWrite.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAAwH0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T10:13:46.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SelectedAPI.cs",
+              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Execution\\SelectedAPI.cs",
+              "RelativeDocumentMoniker": "HoleNexusLauncher\\Execution\\SelectedAPI.cs",
+              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Execution\\SelectedAPI.cs",
+              "RelativeToolTip": "HoleNexusLauncher\\Execution\\SelectedAPI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T10:13:45.97Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CoreData.cs",
+              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Execution\\CoreData.cs",
+              "RelativeDocumentMoniker": "HoleNexusLauncher\\Execution\\CoreData.cs",
+              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Execution\\CoreData.cs",
+              "RelativeToolTip": "HoleNexusLauncher\\Execution\\CoreData.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA1wBIAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T10:13:43.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Loading.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Loading.xaml.cs",
+              "RelativeDocumentMoniker": "HoleNexusLauncher\\Loading.xaml.cs",
+              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Loading.xaml.cs",
+              "RelativeToolTip": "HoleNexusLauncher\\Loading.xaml.cs",
+              "ViewState": "AgIAAIwBAAAAAAAAAAAQwKIBAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T10:00:07.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PipeProcess.cs",
+              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\WRDWrapper\\PipeProcess.cs",
+              "RelativeDocumentMoniker": "WRDWrapper\\PipeProcess.cs",
+              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\WRDWrapper\\PipeProcess.cs",
+              "RelativeToolTip": "WRDWrapper\\PipeProcess.cs",
+              "ViewState": "AgIAAM0AAAAAAAAAAAAuwNcAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T09:59:10.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WRDAPI.cs",
+              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\WRDWrapper\\WRDAPI.cs",
+              "RelativeDocumentMoniker": "WRDWrapper\\WRDAPI.cs",
+              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\WRDWrapper\\WRDAPI.cs",
+              "RelativeToolTip": "WRDWrapper\\WRDAPI.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAuwEAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T09:55:22.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\WRDWrapper\\Program.cs",
+              "RelativeDocumentMoniker": "WRDWrapper\\Program.cs",
+              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\WRDWrapper\\Program.cs",
+              "RelativeToolTip": "WRDWrapper\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T09:54:34.957Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "KeySystem.xaml",
-              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\KeySystem.xaml",
-              "RelativeDocumentMoniker": "HoleNexusLauncher\\KeySystem.xaml",
-              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\KeySystem.xaml",
-              "RelativeToolTip": "HoleNexusLauncher\\KeySystem.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-03T04:17:51.532Z",
+              "Title": "ExecutionHandler.cs",
+              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Execution\\ExecutionHandler.cs",
+              "RelativeDocumentMoniker": "HoleNexusLauncher\\Execution\\ExecutionHandler.cs",
+              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\Execution\\ExecutionHandler.cs",
+              "RelativeToolTip": "HoleNexusLauncher\\Execution\\ExecutionHandler.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAAwGQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T09:47:24.774Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "HoleNexusLauncher\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\NguyenNhatSakura\\Downloads\\HoleNexusLauncher\\HoleNexusLauncher\\MainWindow.xaml.cs",
+              "RelativeToolTip": "HoleNexusLauncher\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAIADAAAAAAAAAAAuwI4DAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T09:44:47.057Z",
               "EditorCaption": ""
             }
           ]

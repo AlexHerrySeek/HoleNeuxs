@@ -442,7 +442,7 @@
                         <PathGeometry Figures="M21,16 L21,12 L12,12 M11,12 A4,4,0,0,1,3,12 A4,4,0,0,1,11,12 M17,15 L17,12"/>
                     </Path.Data>
                 </Path>
-                <TextBlock x:Name="Footer" Foreground="#FFDBDFE9" HorizontalAlignment="Center" Height="12" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Margin="0,317,0,0" Text="©2025 HoleNexus, Made By AlexHerry.Seek" FontFamily="Comfortaa Light" FontSize="10"/>
+                <TextBlock x:Name="Footer" Foreground="#FFDBDFE9" HorizontalAlignment="Center" Height="12" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Margin="0,317,0,0" Text="&#169;2025 HoleNexus, Made By AlexHerry.Seek" FontFamily="Comfortaa Light" FontSize="10"/>
 
             </Grid>
         </Border>
