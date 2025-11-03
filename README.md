@@ -22,7 +22,7 @@ No. HoleNexus is not obfuscated either; you are free to look at the (shitty) cod
 ## Can you get banned for Roblox for using exploits?
 Yes, but Roblox allows you to exploit [only in your own games](https://devforum.roblox.com/t/an-update-on-automated-action-against-modified-clients/3640609).
 ## Features
-- The key system bypass is what makes MainDab different from other exploits. This process is fully automated
+- The key system bypass is what makes HoleNexus different from other exploits. This process is fully automated
 - HoleNexus also has standard features found in other exploits:
 - A status page showing which APIs are patched by Roblox
 ## Help/FAQ
