@@ -31,9 +31,6 @@ namespace HoleNexusLauncher
         public Loading()
         {
             InitializeComponent();
-            ShowConsole();
-            Console.Title = "HoleNexus | Loading...";
-            Console.WriteLine(" ██░ ██  ▒█████   ██▓    ▓█████  ███▄    █ ▓█████ ▒██   ██▒ █    ██   ██████ \r\n▓██░ ██▒▒██▒  ██▒▓██▒    ▓█   ▀  ██ ▀█   █ ▓█   ▀ ▒▒ █ █ ▒░ ██  ▓██▒▒██    ▒ \r\n▒██▀▀██░▒██░  ██▒▒██░    ▒███   ▓██  ▀█ ██▒▒███   ░░  █   ░▓██  ▒██░░ ▓██▄   \r\n░▓█ ░██ ▒██   ██░▒██░    ▒▓█  ▄ ▓██▒  ▐▌██▒▒▓█  ▄  ░ █ █ ▒ ▓▓█  ░██░  ▒   ██▒\r\n░▓█▒░██▓░ ████▓▒░░██████▒░▒████▒▒██░   ▓██░░▒████▒▒██▒ ▒██▒▒▒█████▓ ▒██████▒▒\r\n ▒ ░░▒░▒░ ▒░▒░▒░ ░ ▒░▓  ░░░ ▒░ ░░ ▒░   ▒ ▒ ░░ ▒░ ░▒▒ ░ ░▓ ░░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░\r\n ▒ ░▒░ ░  ░ ▒ ▒░ ░ ░ ▒  ░ ░ ░  ░░ ░░   ░ ▒░ ░ ░  ░░░   ░▒ ░░░▒░ ░ ░ ░ ░▒  ░ ░\r\n ░  ░░ ░░ ░ ░ ▒    ░ ░      ░      ░   ░ ░    ░    ░    ░   ░░░ ░ ░ ░  ░  ░  \r\n ░  ░  ░    ░ ░      ░  ░   ░  ░         ░    ░  ░ ░    ░     ░           ░  \r\n Welcome, To HoleNexus! Wait Download Assets To Using...");
         }
 
         public static void ShowConsole()

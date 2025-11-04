@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HoleNexusLauncher"
         mc:Ignorable="d"
-        Title="HoleNexus - Home"
+        Title="HoleNexus - Launcher"
         Height="450" 
         Width="910"
         WindowStyle="None"
@@ -253,7 +253,7 @@
             </Border>
             <Border x:Name="EditorPage" Visibility="Collapsed" Margin="0,48,0,0">
                 <Grid>
-                    <ScrollViewer x:Name="ScriptsView" Visibility="Visible" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Margin="739,52,0,38" Width="165" HorizontalAlignment="Left">
+                    <ScrollViewer x:Name="ScriptsView" Visibility="Visible" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" Margin="739,52,0,21" Width="165" HorizontalAlignment="Left">
                         <StackPanel x:Name="MainScriptsHolder" Orientation="Vertical" Margin="0" Width="156"/>
                     </ScrollViewer>
                     <Label FontFamily="pack://application:,,,/Fonts/#M PLUS Rounded 1c Bold" FontSize="11" Foreground="#c7c7c7" Content="Explore Your Saved Scripts" Margin="631,29,32,350" HorizontalAlignment="Right" VerticalAlignment="Top" Width="137" Height="23"/>
@@ -269,7 +269,7 @@
                         </Grid>
                     </Border>
 
-                    <Border x:Name="UIControl" Margin="739,367,4,5" CornerRadius="5" Padding="5" BorderThickness="1" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                    <Border x:Name="UIControl" Margin="0,0,682,3" CornerRadius="5" Padding="5" BorderThickness="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="36" Width="222">
                         <Border.BorderBrush>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                                 <GradientStop Color="#FF232A42" Offset="0"/>
@@ -304,29 +304,29 @@
                             </Style>
                         </Border.Resources>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="-2,0,0,0" Width="159">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="-2,0,0,0" Width="213">
                             <Button x:Name="ExecuteQA" Margin="5,0" ToolTip="Execute" Click="Execute_Click">
-                                <Image Source="/Assets/executed.png" Width="16" Height="16"/>
+                                <Image Source="/Assets/executed.png" Width="25" Height="27"/>
                             </Button>
                             <Button x:Name="ClearQA" Margin="5,0" ToolTip="Clear" Click="Clear_Click">
-                                <Image Source="/Assets/cleared.png" Width="16" Height="16"/>
+                                <Image Source="/Assets/cleared.png" Width="25" Height="27"/>
                             </Button>
                             <Button x:Name="OpenFileQA" Margin="5,0" ToolTip="Open File" Click="OpenFile_Click">
-                                <Image Source="/Assets/opened.png" Width="16" Height="16"/>
+                                <Image Source="/Assets/opened.png" Width="25" Height="27"/>
                             </Button>
                             <Button x:Name="SaveFileQA" Margin="5,0" ToolTip="Save File" Click="SaveFile_Click">
-                                <Image Source="/Assets/saved.png" Width="16" Height="16"/>
+                                <Image Source="/Assets/saved.png" Width="25" Height="27"/>
                             </Button>
                             <Button x:Name="AttachQA" Margin="5,0" ToolTip="Attach" Click="Attach_Click">
-                                <Image Source="/Assets/inject.png" Width="16" Height="16"/>
+                                <Image Source="/Assets/inject.png" Width="25" Height="27"/>
                             </Button>
                             <Button x:Name="KillRobloxQA" Margin="5,0" ToolTip="Attach" Click="KillRoblox_Click">
-                                <Image Source="/Assets/robloxed.png" Width="16" Height="16"/>
+                                <Image Source="/Assets/robloxed.png" Width="25" Height="27"/>
                             </Button>
                         </StackPanel>
                     </Border>
 
-                    <Grid x:Name="EditorHolder" Margin="10,48,174,5">
+                    <Grid x:Name="EditorHolder" Margin="10,48,174,44">
 
                     </Grid>
                 </Grid>

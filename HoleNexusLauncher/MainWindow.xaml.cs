@@ -1040,7 +1040,7 @@ public partial class MainWindow : Window
         }
         else
         {
-            MessageBox.Show("Please open Roblox first before attempting to inject");
+            PopupNotification("Please open Roblox first before attempting to inject");
         }
     }
 
@@ -1058,6 +1058,7 @@ public partial class MainWindow : Window
                 {
                     proc.Kill();
                     MessageBox.Show("Roblox process killed", "HoleNexus");
+                    PopupNotification("Roblox process killed", 4000);
                 }
 
             }
