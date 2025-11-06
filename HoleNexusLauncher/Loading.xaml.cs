@@ -19,18 +19,25 @@ namespace HoleNexusLauncher
     {
         WebClient WebStuff = new WebClient();
 
-        [DllImport("kernel32.dll")]
-        static extern IntPtr GetConsoleWindow();
-
-        [DllImport("user32.dll")]
-        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow); // show = 5, hide = 0
-
-        [DllImport("kernel32.dll")]
-        static extern bool AllocConsole(); // Tạo mới console nếu chưa có
+        private const int SW_SHOW = 5;
+        private const int SW_HIDE = 0;
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern IntPtr GetConsoleWindow();
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern bool AllocConsole();
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern bool FreeConsole();
+        private static bool consoleAllocated = false;
 
         public Loading()
         {
             InitializeComponent();
+            ShowConsole();
+            Console.WriteLine("Loading window initialized.");
+            Console.Clear();
+            Console.WriteLine("█░█ █▀█ █░░ █▀▀ █▄░█ █▀▀ ▀▄▀ █░█ █▀\r\n█▀█ █▄█ █▄▄ ██▄ █░▀█ ██▄ █░█ █▄█ ▄█");
         }
 
         public static void ShowConsole()
@@ -305,7 +312,8 @@ namespace HoleNexusLauncher
                     "HoleNexusWRDWrapper.exe",
                     "HoleNexusWRDWrapper.pdb",
                     "HoleNexusWRDWrapper.runtimeconfig.json",
-                    "WRDFakeServer.exe"
+                    "WRDFakeServer.exe",
+                    "Xeno.dll"
                 };
 
                         foreach (string file in filesToDelete)
@@ -361,6 +369,12 @@ namespace HoleNexusLauncher
             {
                 Console.WriteLine("Downloading wearedevs_exploit_api.dll...");
                 WebStuff.DownloadFile("https://wrdcdn.net/r/2/exploit%20api/wearedevs_exploit_api.dll", "wearedevs_exploit_api.dll");
+            }
+
+            if (!File.Exists("Xeno.dll"))
+            {
+                Console.WriteLine("Downloading Xeno.dll...");
+                WebStuff.DownloadFile("https://github.com/AlexHerrySeek/HoleNexus/raw/refs/heads/main/backend/Xeno.dll", "Xeno.dll");
             }
 
             // OpenSSL

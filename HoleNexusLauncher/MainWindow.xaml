@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Settings="clr-namespace:HoleNexusLauncher.Controls"
         xmlns:local="clr-namespace:HoleNexusLauncher"
         mc:Ignorable="d"
         Title="HoleNexus - Launcher"
@@ -326,6 +327,43 @@
                         </StackPanel>
                     </Border>
 
+                    <Border x:Name="UIStatus" Margin="0,0,174,3" CornerRadius="5" Padding="5" BorderThickness="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="36" Width="222">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#FF232A42" Offset="0"/>
+                                <GradientStop Color="#FF586BA8" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#FF06080D" Offset="0"/>
+                                <GradientStop Color="#FF1F2B55" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <Border.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="Cursor" Value="Arrow"/>
+                                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Border.Resources>
+                        <Label x:Name="StatusLabel" FontFamily="Outfit Medium" FontSize="11" Foreground="#C7C7C7" Content="Status: Waiting for Injection" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Width="190" Margin="16,4,0,0" Height="23"/>
+                    </Border>
+                    <Label x:Name="StatusIndicator" FontFamily="Outfit Medium" FontSize="36" Foreground="#FFAFAFAF" Content="●" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,354,364,0" Width="32" Height="46"/>
+
                     <Grid x:Name="EditorHolder" Margin="10,48,174,44">
 
                     </Grid>
@@ -351,21 +389,29 @@
             </Border>
 
             <Border x:Name="SettingsPage" Margin="0,48,0,0" Visibility="Collapsed">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock Text="🚧 COMING SOON 🚧"  Foreground="#5C6AFF" FontWeight="Bold" FontSize="28" FontFamily="Consolas" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-                        <TextBlock Text="This feature is under development..." Foreground="#D4D4D4" FontFamily="Cascadia Code" FontSize="16" HorizontalAlignment="Center"/>
-                        <TextBlock Text="AlexHerry.Seek | HoleNexus" Foreground="#555" FontSize="13" Margin="0,20,0,0" FontStyle="Italic" HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </Grid>
+                <StackPanel>
+                    <Grid Height="400">
+                        <Label Content="Settings Windows" FontFamily="Outfit Medium" FontSize="16" Foreground="#C7C7C7" Margin="4,10,534,359" Height="31"/>
+                        <Settings:SettingCheckBox x:Name="GhimCuaSo" Title="TopMost Windows" Description="Pin windows to overwrite others." Height="60" Margin="10,41,467,299" Background="Transparent" Foreground="#FFB2B2B2" Panel.ZIndex="1" Width="431"/>
+                        <Settings:SettingCheckBox x:Name="DiscordRPC" Title="Discord RPC" Description="The thing that shows you playing HoleNexus on your Discord status." Height="60" Margin="10,106,467,234" Background="Transparent" Foreground="#FFB2B2B2" Panel.ZIndex="1" Width="431"/>
+                        <Label Content="Settings API" FontFamily="Outfit Medium" FontSize="16" Foreground="#C7C7C7" Margin="454,10,84,359" Height="31"/>
+                        <Settings:SettingCheckBox x:Name="JJSploitAPI" Title="Use JJSploit API" Description="JJSploit API (Bypassed Key System) 98% UNC (fake)" Height="60" Margin="454,41,23,299" Background="Transparent" Foreground="#FFB2B2B2" Panel.ZIndex="1" Width="431"/>
+                        <Settings:SettingCheckBox x:Name="XenoAPI" Title="Use Xeno API" Description="Xeno API 83% UNC (I Dont Kown)" Height="60" Margin="454,106,23,234" Background="Transparent" Foreground="#FFB2B2B2" Panel.ZIndex="1" Width="431"/>
+                        <Label Content="Settings Monaco" FontFamily="Outfit Medium" FontSize="16" Foreground="#C7C7C7" Margin="10,171,528,198" Height="31"/>
+                        <Settings:SettingCheckBox x:Name="MiniMapNonaco" Title="Mini Map" Description="Show a zoomed-out code preview on the side to quickly navigate large files." Height="60" Margin="10,207,467,133" Background="Transparent" Foreground="#FFB2B2B2" Panel.ZIndex="1" Width="431"/>
+                        <Settings:SettingCheckBox x:Name="InlayHintsMonaco" Title="Inlay Hints" Description="Display Inline hints for parameter names and inferred types while coding." Height="60" Margin="10,272,467,68" Background="Transparent" Foreground="#FFB2B2B2" Panel.ZIndex="1" Width="431"/>
+                        <Settings:SettingSlider x:Name="FontSize" Title="Font Size" Description="Setting Font Size Monaco" MinimumValue="5" MaximumValue="50" Margin="10,337,467,9" Width="431" Height="54"/>
+                        <Label Content="Settings Other" FontFamily="Outfit Medium" FontSize="16" Foreground="#C7C7C7" Margin="454,171,84,198" Height="31"/>
+                        <Settings:SettingCheckBox x:Name="MultiInstance" Title="Multi Instance" Description="Allow multiple Roblox sessions." Height="60" Margin="454,207,23,133" Background="Transparent" Foreground="#FFB2B2B2" Panel.ZIndex="1" Width="431"/>
+                        <Settings:SettingCheckBox x:Name="CPULimit" Title="CPU Limit" Description="Limit CPU usage per instance." Height="60" Margin="454,272,23,68" Background="Transparent" Foreground="#FFB2B2B2" Panel.ZIndex="1" Width="431"/>
+                    </Grid>
+                </StackPanel>
             </Border>
-            <Border x:Name="NotificationBorder" BorderBrush="#FF2C2C2D" BorderThickness="1" Panel.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,353" CornerRadius="6,6,6,6" Background="#FF1D1D1E" Width="280">
+
+            <Border x:Name="NotificationBorder" BorderBrush="#FF2C2C2D" BorderThickness="1" Panel.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,353" CornerRadius="6,6,6,6" Background="#FF1D1D1E" Width="349" Height="52">
                 <Grid x:Name="NotificationGrid">
-                    <TextBlock x:Name="NotificationContent" Margin="16,16,32,18" TextWrapping="Wrap" Text="GodsWave Loaded!" VerticalAlignment="Top" FontFamily="SF Pro" FontSize="13" Foreground="#FFC8C8C8" HorizontalAlignment="Left" Width="230"/>
-                    <Border x:Name="DurationIndicator" Width="278" Height="4" VerticalAlignment="Bottom" HorizontalAlignment="Left" CornerRadius="2,2,2,2" Background="#FFDA00FF"/>
+                    <TextBlock x:Name="NotificationContent" Margin="10,0,0,0" TextWrapping="Wrap" Text="Nguyễn Minh Nhật Love Hà Quỳnh Anh ❤!" FontFamily="SF Pro" FontSize="13" Foreground="#FFC8C8C8" HorizontalAlignment="Left" Width="304" Height="30" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <Border x:Name="DurationIndicator" Width="345" Height="4" VerticalAlignment="Top" HorizontalAlignment="Center" CornerRadius="2,2,2,2" Background="#FFDA00FF" Margin="0,46,0,0"/>
                     <Button Click="CloseNotificationButton_Click" x:Name="CloseNotificationButton" Content="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z" Background="#FF1D1D1E" Padding="7,7,7,7" Style="{StaticResource tabButton}" Width="26" Height="26" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,2,2,0" BorderThickness="0,6,0,0"/>
                 </Grid>
             </Border>

@@ -21,6 +21,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HoleNexusLauncher.API;
 using Path = System.IO.Path;
 
 namespace HoleNexusLauncher;
@@ -49,22 +50,25 @@ public partial class MainWindow : Window
 
     bool IsInjected = false;
     bool InjectionInProgress = false;
+    private Process robloxProcess = null;
+    private System.Timers.Timer robloxWatchTimer = null;
 
-    [DllImport("kernel32.dll")]
-    static extern IntPtr GetConsoleWindow();
+    // Console handle - https://stackoverflow.com/questions/3571627/show-hide-the-console-window-of-a-c-sharp-console-application
+    private const int SW_SHOW = 5;
+    private const int SW_HIDE = 0;
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern IntPtr GetConsoleWindow();
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern bool AllocConsole();
+    [DllImport("user32.dll", SetLastError = true)]
+    private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern bool FreeConsole();
+    private static bool consoleAllocated = false;
 
-    [DllImport("user32.dll")]
-    static extern bool ShowWindow(IntPtr hWnd, int nCmdShow); // show = 5, hide = 0
-
-    [DllImport("kernel32.dll")]
-    static extern bool AllocConsole(); // Tạo mới console nếu chưa có
     public MainWindow()
     {
         InitializeComponent();
-        ShowConsole();
-        Console.Title = "HoleNexus Launcher Console";
-        Console.Clear();
-        Console.WriteLine($" ██░ ██  ▒█████   ██▓    ▓█████  ███▄    █ ▓█████ ▒██   ██▒ █    ██   ██████ \r\n▓██░ ██▒▒██▒  ██▒▓██▒    ▓█   ▀  ██ ▀█   █ ▓█   ▀ ▒▒ █ █ ▒░ ██  ▓██▒▒██    ▒ \r\n▒██▀▀██░▒██░  ██▒▒██░    ▒███   ▓██  ▀█ ██▒▒███   ░░  █   ░▓██  ▒██░░ ▓██▄   \r\n░▓█ ░██ ▒██   ██░▒██░    ▒▓█  ▄ ▓██▒  ▐▌██▒▒▓█  ▄  ░ █ █ ▒ ▓▓█  ░██░  ▒   ██▒\r\n░▓█▒░██▓░ ████▓▒░░██████▒░▒████▒▒██░   ▓██░░▒████▒▒██▒ ▒██▒▒▒█████▓ ▒██████▒▒\r\n ▒ ░░▒░▒░ ▒░▒░▒░ ░ ▒░▓  ░░░ ▒░ ░░ ▒░   ▒ ▒ ░░ ▒░ ░▒▒ ░ ░▓ ░░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░\r\n ▒ ░▒░ ░  ░ ▒ ▒░ ░ ░ ▒  ░ ░ ░  ░░ ░░   ░ ▒░ ░ ░  ░░░   ░▒ ░░░▒░ ░ ░ ░ ░▒  ░ ░\r\n ░  ░░ ░░ ░ ░ ▒    ░ ░      ░      ░   ░ ░    ░    ░    ░   ░░░ ░ ░ ░  ░  ░  \r\n ░  ░  ░    ░ ░      ░  ░   ░  ░         ░    ░  ░ ░    ░     ░           ░  \r\n Welcome, To HoleNexus! Version {CurrentVersion}.\r\n Pls Join My Discord Sever: discord.gg/gRgkNYeWYs\r\n My Website: holenexus.page.gd\r\n Made With Love AlexHerry.Seek");
     }
 
     public static void ShowConsole()
@@ -84,7 +88,6 @@ public partial class MainWindow : Window
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
         UserNameLabel.Content = Environment.UserName;
-        Information("Welcome back, " + Environment.UserName + "!", 4);
         LoginLabel.Content = "Last Login: " + DateTime.Now;
         Console.WriteLine($"Welcome Back, " + Environment.UserName + ", Last Login: " + DateTime.Now);
         PopupNotification("HoleNexus Launcher Loaded Successfully!", 3000);
@@ -706,6 +709,8 @@ public partial class MainWindow : Window
             return;
 
         await browser.ExecuteScriptAsync("SetText(``);");
+        PopupNotification("Editor Cleared Successfully!", 2000);
+        Console.WriteLine("Editor Cleared Successfully.");
     }
 
     public async Task OpenFile()
@@ -719,6 +724,7 @@ public partial class MainWindow : Window
         {
             string text = await File.ReadAllTextAsync(dlg.FileName);
             await SetText(text);
+            Console.WriteLine("File Loaded: " + dlg.FileName);
         }
     }
 
@@ -734,6 +740,7 @@ public partial class MainWindow : Window
         {
             string text = await GetText();
             await File.WriteAllTextAsync(dlg.FileName, text);
+            Console.WriteLine("File Saved: " + dlg.FileName);
         }
     }
     #endregion
@@ -797,8 +804,8 @@ public partial class MainWindow : Window
 
     private void AddTabBTN_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-        AddTab($"Tab {TabPanel.Children.Count.ToString()}.lua", "print('Hello Roblox, I Hacker! Using HoleNexus Exploit.')\n--// Made By Alex Herry.");
-        Console.WriteLine("New Tab Added.");
+        AddTab($"Tab {TabPanel.Children.Count}.lua","print('Hello Roblox, I Hacker! Using HoleNexus Exploit.')\n--// Made By Alex Herry.");
+        Console.WriteLine($"New Tab Added {TabPanel.Children.Count}.");
     }
     #endregion
 
@@ -1013,34 +1020,92 @@ public partial class MainWindow : Window
         await SaveFile();
     }
 
-    private void Attach_Click(object sender, RoutedEventArgs e)
+    private async void Attach_Click(object sender, RoutedEventArgs e)
     {
-        Process[] pname = Process.GetProcessesByName("RobloxPlayerBeta");
-        if (IsInjected)
+        try
         {
-            MessageBox.Show("The API has already been injected. Attempting to inject twice will result in a crash");
-        }
-        else if (InjectionInProgress)
-        {
-            PopupNotification("Injection is already in process");
-        }
-        else if (pname.Length > 0) // If Roblox is running
-        {
-            InjectionInProgress = true;
+            Process[] pname = Process.GetProcessesByName("RobloxPlayerBeta");
 
-            // wrd
-            if (Execution.SelectedAPI.API == "Selected API: WeAreDevs API")
+            if (IsInjected)
             {
-                // wrd
-                if (Execution.SelectedAPI.API == "Selected API: WeAreDevs API")
+                MessageBox.Show("The API has already been injected. Attempting to inject twice will result in a crash", "Already Injected");
+                return;
+            }
+
+            if (InjectionInProgress)
+            {
+                PopupNotification("Injection is already in process...");
+                return;
+            }
+
+            if (pname.Length == 0)
+            {
+                PopupNotification("Please open Roblox first before attempting to inject");
+                StatusLabel.Content = "Status: Roblox not opened";
+                return;
+            }
+
+            robloxProcess = pname[0];
+            robloxProcess.EnableRaisingEvents = true;
+            robloxProcess.Exited -= RobloxProcess_Exited;
+            robloxProcess.Exited += RobloxProcess_Exited;
+            EnsureRobloxWatchTimer();
+
+            InjectionInProgress = true;
+            StatusLabel.Content = "Status: Injecting...";
+            StatusIndicator.Foreground = new SolidColorBrush(Colors.Yellow);
+
+            bool injectedSuccessfully = false;
+
+            try
+            {
+                await Task.Run(() =>
                 {
-                    ExecutionHandler.Inject();
-                }
+                    string api = SelectedAPI.API;
+
+                    if (api == "Selected API: WeAreDevs API")
+                    {
+                        ShowConsole();
+                        ExecutionHandler.Inject(); // Inject bằng WRD
+                    }
+                    else if (api == "Selected API: Xeno API")
+                    {
+                        HaQuynhAnh.Inject(); // Inject bằng Xeno
+                    }
+                    else
+                    {
+                        throw new Exception("Unknown API selected!");
+                    }
+                });
+
+                injectedSuccessfully = true;
+            }
+            catch (Exception ex)
+            {
+                injectedSuccessfully = false;
+                Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show($"Injection failed: {ex.Message}", "Injection Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    StatusLabel.Content = "Status: Injection failed";
+                    StatusIndicator.Foreground = new SolidColorBrush(Colors.Red);
+                });
+            }
+
+            if (injectedSuccessfully)
+            {
+                IsInjected = true;
+                PopupNotification("Injection successful!");
+                StatusLabel.Content = "Status: Injected";
+                StatusIndicator.Foreground = new SolidColorBrush(Colors.LimeGreen);
+            }
+            else
+            {
+                IsInjected = false;
             }
         }
-        else
+        finally
         {
-            PopupNotification("Please open Roblox first before attempting to inject");
+            InjectionInProgress = false;
         }
     }
 
@@ -1054,7 +1119,7 @@ public partial class MainWindow : Window
         {
             try
             {
-                foreach (Process proc in Process.GetProcessesByName("RobloxPlayerBeta")) // We will loop though each process just to find it
+                foreach (Process proc in Process.GetProcessesByName("RobloxPlayerBeta"))
                 {
                     proc.Kill();
                     MessageBox.Show("Roblox process killed", "HoleNexus");
@@ -1064,9 +1129,88 @@ public partial class MainWindow : Window
             }
             catch
             {
-                // Just in case the user is stupid or something
                 MessageBox.Show("Roblox process has already been killed, or Roblox isn't running.", "HoleNexus");
             }
+        }
+    }
+    #endregion
+    #region Status Kiểm Tra
+    private void RobloxProcess_Exited(object sender, EventArgs e)
+    {
+        Dispatcher.Invoke(() =>
+        {
+            IsInjected = false;
+            InjectionInProgress = false;
+            StatusLabel.Content = "Status: Roblox closed - injection lost";
+            PopupNotification("Roblox has exited. Injection lost.");
+            StatusIndicator.Foreground = new SolidColorBrush(Colors.Red);
+        });
+
+        StopRobloxWatchTimer();
+    }
+
+    private void EnsureRobloxWatchTimer()
+    {
+        if (robloxWatchTimer == null)
+        {
+            robloxWatchTimer = new System.Timers.Timer(2000); // kiểm tra 2s một lần
+            robloxWatchTimer.Elapsed += RobloxWatchTimer_Elapsed;
+            robloxWatchTimer.AutoReset = true;
+            robloxWatchTimer.Start();
+        }
+        else
+        {
+            robloxWatchTimer.Start();
+        }
+    }
+
+    private void StopRobloxWatchTimer()
+    {
+        if (robloxWatchTimer != null)
+        {
+            robloxWatchTimer.Stop();
+            robloxWatchTimer.Elapsed -= RobloxWatchTimer_Elapsed;
+            robloxWatchTimer.Dispose();
+            robloxWatchTimer = null;
+        }
+
+        if (robloxProcess != null)
+        {
+            try
+            {
+                robloxProcess.Exited -= RobloxProcess_Exited;
+                robloxProcess = null;
+            }
+            catch { robloxProcess = null; }
+        }
+    }
+
+    private void RobloxWatchTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    {
+        try
+        {
+            if (robloxProcess == null)
+            {
+                StopRobloxWatchTimer();
+                return;
+            }
+
+            if (robloxProcess.HasExited)
+            {
+                RobloxProcess_Exited(this, EventArgs.Empty);
+            }
+            else
+            {
+                // Nếu bạn có cách kiểm tra injection vẫn còn (ví dụ kiểm tra named pipe, window, memory signature),
+                // bạn có thể thêm logic ở đây để phát hiện "lost injection" dù tiến trình vẫn alive.
+                //
+                // Ví dụ (pseudocode):
+                // if (!CheckInjectionAlive()) { Dispatcher.Invoke(()=> { /* notify lost */ }); }
+            }
+        }
+        catch
+        {
+            RobloxProcess_Exited(this, EventArgs.Empty);
         }
     }
     #endregion

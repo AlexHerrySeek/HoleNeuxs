@@ -8,7 +8,7 @@ namespace HoleNexusLauncher.Execution
 {
     class SelectedAPI
     {
-        public static string API = "Selected API: WeAreDevs API";
+        public static string API = "";
         public static PipeSync NewPipe = new PipeSync("HoleNexusWRDWrapper");
     }
 }

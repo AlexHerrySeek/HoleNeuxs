@@ -1,0 +1,63 @@
+<UserControl x:Class="HoleNexusLauncher.Controls.SettingSlider"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="SettingSliderControl"
+             Loaded="SettingSliderControl_Loaded"
+             Height="70" Width="300">
+    <Border x:Name="MainBorder"
+          BorderBrush="#FF2C2C2D"
+          BorderThickness="1"
+          Background="#FF1D1D1E"
+          CornerRadius="4">
+        <Grid x:Name="MainGrid" Background="#FF222631">
+            <Label x:Name="TitleLabel"
+             Content="{Binding Title, ElementName=SettingSliderControl, FallbackValue='Text Size'}"
+             Margin="12,8,0,0"
+             FontSize="16"
+             Foreground="Gainsboro"
+             FontFamily="SF Pro"
+             Background="Transparent"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Top" />
+
+            <Label x:Name="DescriptionLabel"
+             Content="{Binding Description, ElementName=SettingSliderControl, FallbackValue='I wonder what this does'}"
+             Margin="12,30,0,0"
+             FontSize="13"
+             Foreground="#FFB2B2B2"
+             FontFamily="SF Pro"
+             Background="Transparent"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Top" />
+
+            <Border x:Name="IndicatorBorder"
+              Margin="0,0,15,0"
+              Width="152"
+              Height="34"
+              CornerRadius="4"
+              BorderBrush="#FF2C2C2D"
+              BorderThickness="1"
+              Background="#FF0F0F10"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Center"
+              MouseLeftButtonDown="IndicatorBorder_MouseLeftButtonDown">
+                <Grid x:Name="IndicatorGrid">
+                    <Border x:Name="IndicatorHighlight"
+                  HorizontalAlignment="Left"
+                  Width="25"
+                  Background="#FF2C2C2D"
+                  CornerRadius="2"
+                  IsHitTestVisible="False"/>
+                    <Label x:Name="IndicatorLabel"
+                 Content="{Binding Value, ElementName=SettingSliderControl, StringFormat=F0}"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 FontSize="13"
+                 FontFamily="SF Pro"
+                 Foreground="#FFC8C8C8"
+                 Background="Transparent" />
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

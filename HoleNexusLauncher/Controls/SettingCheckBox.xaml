@@ -1,0 +1,46 @@
+<UserControl x:Class="HoleNexusLauncher.Controls.SettingCheckBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="SettingCheckBoxControl"
+             Height="60" Width="395">
+    <Border x:Name="MainBorder"
+            Background="#FF222631"
+            BorderBrush="#FF404052"
+            BorderThickness="1"
+            CornerRadius="4"
+            MouseLeftButtonDown="MainBorder_MouseLeftButtonDown">
+        <Grid>
+            <!-- Text Area -->
+            <StackPanel Margin="12,8,60,8">
+                <TextBlock Text="{Binding Title, ElementName=SettingCheckBoxControl}"
+                           FontSize="16"
+                           FontFamily="Segoe UI"
+                           Foreground="Gainsboro"
+                           FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding Description, ElementName=SettingCheckBoxControl}"
+                           FontSize="13"
+                           FontFamily="Segoe UI"
+                           Foreground="#FFB2B2B2"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <!-- Check Indicator -->
+            <Border x:Name="IndicatorBorder"
+                    Width="34" Height="34"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0,0,15,0"
+                    Background="#FF0F0F10"
+                    BorderBrush="#FF2C2C2D"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <Path x:Name="IndicatorPath"
+                      Opacity="0"
+                      Fill="White"
+                      Stretch="Uniform"
+                      Margin="6"
+                      Data="M 382,-354 L 721,-693 Q 733,-705 749.5,-705 766,-705 778,-693 790,-681 790,-664.5 790,-648 778,-636 L 410,-268 Q 398,-256 382,-256 366,-256 354,-268 L 182,-440 Q 170,-452 170.5,-468.5 171,-485 183,-497 195,-509 211.5,-509 228,-509 240,-497 L 382,-354 Z"/>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>
